@@ -1,0 +1,376 @@
+/* ===================== */
+/* 全体設定               */
+/* ===================== */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding-top: 70px;
+    font-family: "Philosopher", "M PLUS 1p",
+                 -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+                 "YuGothic", "游ゴシック体", sans-serif;
+
+    background: #9683A0FF;   /* 背景色 */
+    color: #2b1f34;
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+/* ===================== */
+/* ナビゲーション         */
+/* ===================== */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #9F8BAAFF;   /* ヘッダー色 */
+    padding: 10px 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(224, 176, 255, 0.35);
+    backdrop-filter: blur(10px);
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+}
+
+nav a {
+    color: #fdf4ff;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+nav a:hover {
+    color: #ffc0f3;
+    opacity: 1;
+}
+
+/* ===================== */
+/* セクション共通         */
+/* ===================== */
+section.block {
+    position: relative;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 70px 20px;
+}
+
+section.block:last-of-type {
+    padding-bottom: 180px;
+}
+
+/* 区切り線 */
+section.block::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        rgba(255, 190, 255, 0.0),
+        rgba(255, 190, 255, 0.5),
+        rgba(190, 170, 255, 0.0)
+    );
+    z-index: -2;
+}
+
+/* Mission 余白 */
+#mission {
+    padding: 90px 20px 60px;
+}
+
+/* ===================== */
+/* 見出し・テキスト       */
+/* ===================== */
+h1 {
+    font-size: 28px;
+    margin: 0 0 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.sub-ja {
+    font-size: 14px;
+    margin: 6px 0 12px;
+    color: #6b577b;
+    letter-spacing: 0.12em;
+}
+
+.hero-copy {
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+h3 {
+    font-size: 16px;
+    margin: 20px 0 10px;
+}
+
+p {
+    font-size: 15px;
+    margin: 0;
+}
+
+/* テキストコンテナ */
+.section-text,
+.hero-text {
+    position: relative;
+    z-index: 0;
+}
+
+/* ===================== */
+/* パネル（フェード付き） */
+/* ===================== */
+.fade-panel {
+    background: #CDB3DAFF;
+    padding: 24px 28px;
+    border-radius: 18px;
+    box-shadow:
+        0 0 12px rgba(0, 0, 0, 0.10),
+        0 0 20px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        box-shadow 0.4s ease;
+}
+
+.fade-panel.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow:
+        0 0 18px rgba(0, 0, 0, 0.15),
+        0 0 28px rgba(0, 0, 0, 0.08);
+}
+
+/* ===================== */
+/* メディアレイアウト     */
+/* ===================== */
+
+/* 共通：アニメ＋テキストを横並びにするブロック */
+.block.with-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    max-width: 1100px;   /* セクション自体を少し広げる */
+}
+
+/* ---- normal：アニメ左・テキスト右 (Home, Music) ---- */
+.block.with-media:not(.reverse) .media {
+    flex: 0 0 52%;            /* アニメ側 */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.block.with-media:not(.reverse) .section-text {
+    flex: 0 0 48%;            /* テキスト側 */
+}
+
+/* ---- reverse：テキスト左・アニメ右 (Animation) ---- */
+.block.with-media.reverse {
+    flex-direction: row;
+}
+
+.block.with-media.reverse .section-text {
+    flex: 0 0 55%;            /* テキスト広め */
+}
+
+.block.with-media.reverse .media {
+    flex: 0 0 45%;            /* アニメ少し絞る */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* 共通：動画本体のベース */
+.media-video {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    display: block;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* ===================== */
+/* 各セクション個別調整   */
+/* ===================== */
+
+/* Mission セクション アイコン */
+#mission .mission-icon {
+    width: 220px;          /* サイズ（調整OK） */
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;   /* ★中央寄せ＋下に余白 */
+    border-radius: 18px;   /* 少し丸く */
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0);
+}
+
+/* Home のアニメ（Physicorin） */
+#home .media-video {
+    width: 115%;          /* 少し大きめに見せる */
+    transform: translateX(3%);  /* ほんの気持ち左寄せ */
+}
+
+/* Animation のアニメ（Revolingul） */
+#animation .media-video {
+    width: 200%;
+           transform: translateX(25%);/* そのまま */
+}
+
+/* Music のアニメ（Xiasm） */
+#music .media-video {
+    width: 180%;          /* 一番ドーンと出す */
+    transform: translateX(25%);
+}
+
+/* ===================== */
+/* 埋め込みプレイヤー類   */
+/* ===================== */
+.embed-container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.7);
+}
+
+/* Theory 用リンクカード */
+.theory-links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.theory-links a {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    color: #fdf4ff;
+    font-size: 14px;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.theory-links a:hover {
+    background: rgba(255, 210, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Contact の丸ボタンリンク */
+.social-links {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+}
+
+.social-links a {
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(238, 196, 255, 0.7);
+    font-size: 14px;
+    text-decoration: none;
+    color: #fdf4ff;
+    background: rgba(255, 255, 255, 0.05);
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.social-links a:hover {
+    background: #fdf4ff;
+    color: #2a1234;
+    border-color: #fdf4ff;
+    transform: translateY(-1px);
+}
+
+/* ===================== */
+/* スマホ用               */
+/* ===================== */
+@media (max-width: 600px) {
+    nav ul {
+        gap: 16px;
+        font-size: 12px;
+    }
+
+    section.block {
+        padding: 60px 16px;
+    }
+
+    section.block:last-of-type {
+        padding-bottom: 130px;
+    }
+
+    #mission {
+        padding: 80px 16px 50px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    /* 縦積みに切り替え */
+    .block.with-media {
+        flex-direction: column;
+        max-width: 780px;
+        gap: 24px;
+    }
+
+    .block.with-media .section-text,
+    .media {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .media-video,
+    #home .media-video,
+    #animation .media-video,
+    #music .media-video {
+        width: 100%;
+        max-width: 100%;
+        transform: none;
+    }
+
+    .fade-panel {
+        padding: 18px 20px;
+        border-radius: 16px;
+    }
+}
