@@ -234,7 +234,7 @@ p {
 /* Home のアニメ（Physicorin） */
 #home .media-video {
     width: 115%;          /* 少し大きめに見せる */
-    transform: translateX(3%);  /* ほんの気持ち左寄せ */
+    transform: translateX(50%);  /* ほんの気持ち左寄せ */
 }
 
 /* Animation のアニメ（Revolingul） */
