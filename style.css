@@ -201,9 +201,8 @@ p {
 
 /* メディアコンテナ */
 .media {
-    background: #9683A0FF;
-    overflow: hidden;
-    border-radius: 0;
+    background: #9683A0FF; /* 追加 */
+    overflow: hidden; /* 追加 */
 }
 
 /* ビデオ要素 */
@@ -212,10 +211,10 @@ p {
     max-width: none;
     height: auto;
     display: block;
-    background: #9683A0FF;
+    background: #9683A0FF; /* 変更 */
     border-radius: 0;
     box-shadow: none;
-    object-fit: cover;
+    object-fit: cover; /* 追加 */
 }
 
 /* ===================== */
@@ -312,41 +311,11 @@ p {
 /* スマホ用               */
 /* ===================== */
 @media (max-width: 600px) {
-    /* ナビゲーション調整 */
-    nav {
-        padding: 6px 0;
-    }
-    
     nav ul {
-        gap: 4px;
-        padding: 0 4px;
-        flex-wrap: nowrap;
-    }
-    
-    nav a {
-        font-size: 9px;
-        letter-spacing: 0.02em;
-        padding: 2px;
+        gap: 16px;
+        font-size: 12px;
     }
 
-    /* ビデオ関連を強制修正 */
-    .media {
-        background: #9683A0FF !important;
-        overflow: hidden !important;
-        border-radius: 0 !important;
-    }
-    
-    .media-video {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
-        object-fit: cover !important;
-        background: #9683A0FF !important;
-        display: block !important;
-        transform: none !important;
-    }
-
-    /* セクション調整 */
     section.block {
         padding: 60px 16px;
     }
@@ -383,11 +352,13 @@ p {
         width: 100%;
     }
 
+    .media-video,
     #home .media-video,
     #animation .media-video,
     #music .media-video {
-        width: 100% !important;
-        transform: none !important;
+        width: 100%;
+        max-width: 100%;
+        transform: none;
     }
 
     .fade-panel {
