@@ -314,13 +314,6 @@ p {
     transform: translateY(-1px);
 }
 
-/* PC表示では media のフェードを無効化 */
-@media (min-width: 601px) {
-    .media {
-        opacity: 1 !important;
-        transform: none !important;
-    }
-}
 
 /* ===================== */
 /* スマホ用               */
@@ -420,3 +413,12 @@ p {
 .media-video {
     mix-blend-mode: screen;
 }
+
+/* PC表示では media のフェードを無効化 */
+@media (min-width: 601px) {
+    .media {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
