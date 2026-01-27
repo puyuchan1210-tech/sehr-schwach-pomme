@@ -329,39 +329,38 @@ p {
         font-size: 9px;
         letter-spacing: 0.02em;
     }
-
     section.block {
         padding: 60px 16px;
     }
-
     section.block:last-of-type {
         padding-bottom: 130px;
     }
-
     #mission {
         padding: 80px 16px 50px;
     }
-
     h1 {
         font-size: 22px;
     }
-
     h2 {
         font-size: 18px;
     }
-
     p {
         font-size: 14px;
     }
-
-    /* 縦積みに切り替え（reverse も含めて強制） */
-    .block.with-media,
-    .block.with-media.reverse {
+    /* 縦積みに切り替え */
+    .block.with-media {
         flex-direction: column !important;
         max-width: 780px;
         gap: 24px;
     }
-
+    
+    /* Animationセクション：画像を上に */
+    .block.with-media.reverse {
+        flex-direction: column-reverse !important;
+        max-width: 780px;
+        gap: 24px;
+    }
+    
     .block.with-media .section-text,
     .block.with-media.reverse .section-text,
     .media {
@@ -369,13 +368,24 @@ p {
         width: 100%;
         justify-content: center !important;
     }
-
+    
     /* スマホではビデオを隠して poster 画像のみ表示 */
     .media-video {
         display: none;
     }
     
-    /* poster を背景画像として表示 */
+    /* poster を背景画像として表示 + フェード */
+    .media {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    
+    .media.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
     #home .media {
         background: url('Earth.png') center/contain no-repeat #9683A0FF;
         min-height: 300px;
@@ -390,13 +400,11 @@ p {
         background: url('Xiasm3.png') center/contain no-repeat #9683A0FF;
         min-height: 300px;
     }
-
+    
     /* フェードパネルのアニメーション維持 */
     .fade-panel {
         padding: 18px 20px;
         border-radius: 16px;
-        /* アニメーション設定は元のCSSで既に定義済み */
-        /* opacity: 0 → 1 の transition は維持される */
     }
 }
 
