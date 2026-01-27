@@ -410,10 +410,12 @@ p {
 }
 
 /* スマホ透過対策：黒背景を透明化 */
-.media-video {
-    mix-blend-mode: screen;
+/* スマホ透過対策：黒背景を透明化（スマホのみ） */
+@media (max-width: 600px) {
+    .media-video {
+        mix-blend-mode: screen;
+    }
 }
-
 /* PC表示では media のフェードを無効化 */
 @media (min-width: 601px) {
     .media {
