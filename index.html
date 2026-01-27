@@ -198,8 +198,9 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const panels = document.querySelectorAll(".fade-panel");
+    const mediaElements = document.querySelectorAll(".media");
 
-    function updatePanels() {
+    function updateVisibility() {
         const viewportCenter = window.innerHeight / 2;
         const RANGE = 400;
 
@@ -214,11 +215,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 panel.classList.remove("visible");
             }
         });
+
+        mediaElements.forEach(media => {
+            const rect = media.getBoundingClientRect();
+            const centerY = rect.top + rect.height / 2;
+            const distance = Math.abs(centerY - viewportCenter);
+
+            if (distance < RANGE) {
+                media.classList.add("visible");
+            } else {
+                media.classList.remove("visible");
+            }
+        });
     }
 
-    updatePanels();
-    window.addEventListener("scroll", updatePanels);
-    window.addEventListener("resize", updatePanels);
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility);
+    window.addEventListener("resize", updateVisibility);
 });
 </script>
 
