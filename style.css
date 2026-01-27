@@ -318,9 +318,16 @@ p {
 /* スマホ用               */
 /* ===================== */
 @media (max-width: 600px) {
+    /* ナビゲーション調整 */
     nav ul {
-        gap: 16px;
-        font-size: 12px;
+        gap: 4px;
+        font-size: 10px;
+        padding: 0 4px;
+    }
+    
+    nav a {
+        font-size: 9px;
+        letter-spacing: 0.02em;
     }
 
     section.block {
@@ -347,30 +354,48 @@ p {
         font-size: 14px;
     }
 
-    /* 縦積みに切り替え */
-    .block.with-media {
-        flex-direction: column;
+    /* 縦積みに切り替え（reverse も含めて強制） */
+    .block.with-media,
+    .block.with-media.reverse {
+        flex-direction: column !important;
         max-width: 780px;
         gap: 24px;
     }
 
     .block.with-media .section-text,
+    .block.with-media.reverse .section-text,
     .media {
-        flex: 1 1 auto;
+        flex: 1 1 auto !important;
         width: 100%;
+        justify-content: center !important;
     }
 
-    .media-video,
-    #home .media-video,
-    #animation .media-video,
-    #music .media-video {
-        width: 100%;
-        max-width: 100%;
-        transform: none;
+    /* スマホではビデオを隠して poster 画像のみ表示 */
+    .media-video {
+        display: none;
+    }
+    
+    /* poster を背景画像として表示 */
+    #home .media {
+        background: url('Earth.png') center/contain no-repeat #9683A0FF;
+        min-height: 300px;
+    }
+    
+    #animation .media {
+        background: url('revolingul.png') center/contain no-repeat #9683A0FF;
+        min-height: 300px;
+    }
+    
+    #music .media {
+        background: url('Xiasm3.png') center/contain no-repeat #9683A0FF;
+        min-height: 300px;
     }
 
+    /* フェードパネルのアニメーション維持 */
     .fade-panel {
         padding: 18px 20px;
         border-radius: 16px;
+        /* アニメーション設定は元のCSSで既に定義済み */
+        /* opacity: 0 → 1 の transition は維持される */
     }
 }
