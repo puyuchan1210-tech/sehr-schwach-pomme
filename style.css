@@ -399,3 +399,8 @@ p {
         /* opacity: 0 → 1 の transition は維持される */
     }
 }
+
+/* スマホ透過対策：黒背景を透明化 */
+.media-video {
+    mix-blend-mode: screen;
+}
