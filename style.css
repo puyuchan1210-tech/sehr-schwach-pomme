@@ -12,7 +12,7 @@ body {
                  -apple-system, BlinkMacSystemFont, "Helvetica Neue",
                  "YuGothic", "游ゴシック体", sans-serif;
 
-    background: #9683A0FF;
+    background: #9683A0FF;   /* 背景色 */
     color: #2b1f34;
     line-height: 1.8;
     overflow-x: hidden;
@@ -26,7 +26,7 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    background: #9F8BAAFF;
+    background: #9F8BAAFF;   /* ヘッダー色 */
     padding: 10px 0;
     z-index: 1000;
     border-bottom: 1px solid rgba(224, 176, 255, 0.35);
@@ -71,6 +71,7 @@ section.block:last-of-type {
     padding-bottom: 180px;
 }
 
+/* 区切り線 */
 section.block::after {
     content: "";
     position: absolute;
@@ -87,6 +88,7 @@ section.block::after {
     z-index: -2;
 }
 
+/* Mission 余白 */
 #mission {
     padding: 90px 20px 60px;
 }
@@ -128,6 +130,7 @@ p {
     margin: 0;
 }
 
+/* テキストコンテナ */
 .section-text,
 .hero-text {
     position: relative;
@@ -165,40 +168,45 @@ p {
 /* ===================== */
 /* メディアレイアウト     */
 /* ===================== */
+
+/* 共通：アニメ＋テキストを横並びにするブロック */
 .block.with-media {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 32px;
-    max-width: 1100px;
+    max-width: 1100px;   /* セクション自体を少し広げる */
 }
 
+/* ---- normal：アニメ左・テキスト右 (Home, Music) ---- */
 .block.with-media:not(.reverse) .media {
-    flex: 0 0 52%;
+    flex: 0 0 52%;            /* アニメ側 */
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
 .block.with-media:not(.reverse) .section-text {
-    flex: 0 0 48%;
+    flex: 0 0 48%;            /* テキスト側 */
 }
 
+/* ---- reverse：テキスト左・アニメ右 (Animation) ---- */
 .block.with-media.reverse {
     flex-direction: row;
 }
 
 .block.with-media.reverse .section-text {
-    flex: 0 0 55%;
+    flex: 0 0 55%;            /* テキスト広め */
 }
 
 .block.with-media.reverse .media {
-    flex: 0 0 45%;
+    flex: 0 0 45%;            /* アニメ少し絞る */
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
+/* 共通：動画本体のベース */
 .media-video {
     width: 100%;
     max-width: none;
@@ -212,27 +220,32 @@ p {
 /* ===================== */
 /* 各セクション個別調整   */
 /* ===================== */
+
+/* Mission セクション アイコン */
 #mission .mission-icon {
-    width: 220px;
+    width: 220px;          /* サイズ（調整OK） */
     height: auto;
     display: block;
-    margin: 0 auto 20px;
-    border-radius: 18px;
+    margin: 0 auto 20px;   /* ★中央寄せ＋下に余白 */
+    border-radius: 18px;   /* 少し丸く */
     box-shadow: 0 0 16px rgba(0, 0, 0, 0);
 }
 
+/* Home のアニメ（Physicorin） */
 #home .media-video {
-    width: 115%;
-    transform: translateX(3%);
+    width: 115%;          /* 少し大きめに見せる */
+    transform: translateX(3%);  /* ほんの気持ち左寄せ */
 }
 
+/* Animation のアニメ（Revolingul） */
 #animation .media-video {
-    width: 150%;
-    transform: translateX(25%);
+    width: 200%;
+           transform: translateX(25%);/* そのまま */
 }
 
+/* Music のアニメ（Xiasm） */
 #music .media-video {
-    width: 180%;
+    width: 180%;          /* 一番ドーンと出す */
     transform: translateX(25%);
 }
 
@@ -247,6 +260,7 @@ p {
     box-shadow: 0 0 24px rgba(0, 0, 0, 0.7);
 }
 
+/* Theory 用リンクカード */
 .theory-links {
     margin-top: 20px;
     display: flex;
@@ -270,6 +284,7 @@ p {
     transform: translateY(-1px);
 }
 
+/* Contact の丸ボタンリンク */
 .social-links {
     margin-top: 16px;
     display: flex;
@@ -303,16 +318,9 @@ p {
 /* スマホ用               */
 /* ===================== */
 @media (max-width: 600px) {
-    /* ナビゲーション調整 */
     nav ul {
-        gap: 4px;
-        font-size: 10px;
-        padding: 0 4px;
-    }
-    
-    nav a {
-        font-size: 9px;
-        letter-spacing: 0.02em;
+        gap: 16px;
+        font-size: 12px;
     }
 
     section.block {
@@ -352,25 +360,13 @@ p {
         width: 100%;
     }
 
-    /* スマホではビデオを隠して poster 画像のみ表示 */
-    .media-video {
-        display: none;
-    }
-    
-    /* poster を背景画像として表示 */
-    #home .media {
-        background: url('Earth.png') center/contain no-repeat #9683A0FF;
-        min-height: 300px;
-    }
-    
-    #animation .media {
-        background: url('revolingul.png') center/contain no-repeat #9683A0FF;
-        min-height: 300px;
-    }
-    
-    #music .media {
-        background: url('Xiasm3.png') center/contain no-repeat #9683A0FF;
-        min-height: 300px;
+    .media-video,
+    #home .media-video,
+    #animation .media-video,
+    #music .media-video {
+        width: 100%;
+        max-width: 100%;
+        transform: none;
     }
 
     .fade-panel {
