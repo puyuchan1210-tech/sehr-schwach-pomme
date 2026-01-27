@@ -240,7 +240,7 @@ p {
 /* Animation のアニメ（Revolingul） */
 #animation .media-video {
     width: 200%;
-           transform: translateX(0%);/* そのまま */
+           transform: translateX(-5%);/* そのまま */
 }
 
 /* Music のアニメ（Xiasm） */
